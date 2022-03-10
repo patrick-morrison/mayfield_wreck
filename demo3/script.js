@@ -13,7 +13,7 @@ const camera = new PerspectiveCamera(75, canvasParent.clientWidth/canvasParent.c
 const renderer = new WebGLRenderer()
 renderer.setSize(canvasParent.clientWidth, canvasParent.clientHeight)
 renderer.outputEncoding = sRGBEncoding
-scene.background = new Color( 0x1d1d1d )
+scene.background = new Color( '#373A43' )
 canvasParent.appendChild(renderer.domElement)
 
 // Initialize loaders

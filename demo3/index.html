@@ -16,6 +16,15 @@
       }
     }
   </script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+
   <style>
     * {
       margin: 0;
@@ -25,10 +34,10 @@
     body {
       width: 100vw;
       position: relative;
-      font-weight: 100;
-      font-family: Helvetica, Arial, Helvetica, sans-serif;
-      background-color: black;
-      color: white;
+      font-weight: 10;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      background-color: #373A43;
+      color: #EDEAE5;
       overflow-x: hidden;
     }
 
@@ -92,20 +101,21 @@
     }
 
     .caption {
-      background-color: rgba(0,0,0,0.75);
+      background-color: #6B6952;
+      opacity: .95;
       padding: 1.6rem 2rem 1.8rem 2rem;
       width: 340px;
       position: absolute;
     }
 
     .caption p {
-      color: white;
+      color: #EDEAE5;
       font-size: 1.2rem;
       line-height: 1.4;
     }
 
     #c1 {
-      top: 150vh;
+      top: 15vh;
       left: 15vw;
     }
     #c2 {
@@ -133,6 +143,21 @@
         font-size: 2.5rem;
       }
     }
+
+    #map { height: 400px; }
+    .leaflet-tooltip {
+    background-color: #6B6952;
+    color: #EDEAE5;
+    border:#6B6952}
+
+    .leaflet-tooltip-left:before {
+      border-left-color: #6B6952;
+    }
+    .leaflet-tooltip-right:before {
+      border-right-color: #6B6952;
+    }
+} 
+
 
   </style>
 </head>
@@ -174,8 +199,56 @@
       </div>
     </div>
   </div>
+
+  <div class='content'>
+    <h2> Rocky Bay </h2>
+    <br>
+    <p>
+      Rocky Bay is a industrial maritime landscape - with many more important archaeological sites. 
+    </p>
+    <p>
+      Another shipwreck, City of Perth, rests just a few metres from Mayfield. 
+    </p>
+
+    <div id="map"></div>
+  </div>
+
+
+
   </div>
   <script type='module-shim' src='script.js'></script>
+  <script>
+    var map = L.map('map').setView([-32.029461, 115.757407], 17);
+
+    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+         }).addTo(map);
+
+    var mayfield = L.circle([-32.029461, 115.757407], {
+    radius: 5,
+    fillColor: "#48497F",
+    color: "#2D85CD",
+    weight: 5,
+    opacity: .8,
+    fillOpacity: 0.6
+}).addTo(map);
+
+mayfield.bindTooltip("Mayfield (1945", {permanent:true, direction:'right', offset: L.point({x: 7, y: 0})});
+
+
+
+    var cityofperth = L.circle([-32.029512, 115.757301],{
+    radius: 5,
+    fillColor: "#48497F",
+    color: "#2D85CD",
+    weight: 5,
+    opacity: .8,
+    fillOpacity: 0.6
+    }).addTo(map);
+
+    cityofperth.bindTooltip("City of Perth (1908)", {permanent:true,  direction:'left', offset: L.point({x: -7, y: 0})});
+
+  </script>
 </body>
 
 </html>
