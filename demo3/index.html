@@ -1,0 +1,181 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayfield</title>
+  <script async src="https://unpkg.com/es-module-shims@0.11.1/dist/es-module-shims.js"></script>
+  <script type="importmap-shim">
+    {
+      "imports": {
+        "three": "https://cdn.skypack.dev/three@0.129.0",
+        "three/examples/jsm/loaders/GLTFLoader": "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader",
+        "three/examples/jsm/loaders/DRACOLoader": "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/DRACOLoader",
+        "gsap": "https://cdn.skypack.dev/gsap@3.6.1",
+        "three-story-controls" : "https://unpkg.com/three-story-controls@1.0.0/dist/three-story-controls.esm.min.js"
+      }
+    }
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      position: relative;
+      font-weight: 100;
+      font-family: Helvetica, Arial, Helvetica, sans-serif;
+      background-color: black;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 640px;
+      margin: 4rem auto 6rem auto;
+      box-sizing: border-box;
+      padding: 0 2rem;
+    }
+
+    .content p {
+      font-size: 1.2rem;
+      line-height: 1.4;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      margin-top: 2rem;
+      line-height: 1.2;
+    }
+
+    .back {
+      color: inherit;
+      text-decoration: none;
+      margin: 2rem;
+      display: block;
+    }
+
+    .scene {
+      position: relative;
+    }
+
+    .canvas-parent {
+      width: 100vw;
+      height: 100vh;
+      touch-action: none;
+      position: sticky;
+      top: 0;
+      z-index: -1;
+    }
+
+    .loading {
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+      top: 40%;
+      position: relative;
+    }
+
+    canvas {
+      opacity: 0;
+    }
+
+    .scroller {
+      top: 0vh;
+      width: 100vw;
+      height: 800vh;
+      z-index: 2;
+    }
+
+    .caption {
+      background-color: rgba(0,0,0,0.75);
+      padding: 1.6rem 2rem 1.8rem 2rem;
+      width: 340px;
+      position: absolute;
+    }
+
+    .caption p {
+      color: white;
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+
+    #c1 {
+      top: 150vh;
+      left: 15vw;
+    }
+    #c2 {
+      top: 300vh;
+      right: 20vw;
+    }
+    #c3 {
+      top: 450vh;
+      left: 20vw;
+    }
+    #c4 {
+      top: 600vh;
+      right: 10vw;
+    }
+
+    @media (max-width: 1024px) {
+      #c1, #c2, #c3, #c4 {
+        right: auto;
+        left: 5rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class='content'>
+    <h1> Mayfield Wreck </h1>
+    <p>
+      Mayfield was a barge, first registered in 1899. During WWII it was used to carry armour plating over to Wadjemup (Rottnest Island) for the guns at Oliver Hill. It sunk in Rocky Bay in 1945.
+    </p>
+    <p>
+      1242 images recorded on the 13th of December 2020. Camera: Sony RX100IV with Fantasea UWL-400Q Wide Angle Wet Lens. Processed in Agisoft Metashape. Meshed directly from sparse cloud. Scaled 1 unit = 1m.
+    </p>
+  </div>
+
+  <div class='scene'>
+    <div class='canvas-parent'>
+      <p class='loading'> Loading ... </p>
+    </div>
+    <div class='scroller'>
+      <div class='caption' id='c1'>
+        <p>Recorded with photogrammetry</p>
+      </div>
+      <div class='caption' id='c2'>
+        <p>
+          The wreck is in a stable condition.
+        </p>
+      </div>
+      <div class='caption' id='c3'>
+        <p>
+          Animation with the three.js library.
+        </p>
+      </div>
+      <div class='caption' id='c4'>
+        <p>
+          Bow engine, used to operate a jib.
+        </p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script type='module-shim' src='script.js'></script>
+</body>
+
+</html>
